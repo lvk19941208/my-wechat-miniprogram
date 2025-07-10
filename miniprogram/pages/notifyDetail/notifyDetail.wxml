@@ -1,0 +1,34 @@
+<view class="container">
+  <!-- 背景装饰 -->
+  <view class="bg-circle circle-1"></view>
+  <view class="bg-circle circle-2"></view>
+
+  <!-- 标题 -->
+  <view class="title-container">
+    <text class="title">通知详情</text>
+    <text class="subtitle">请仔细阅读以下内容</text>
+  </view>
+
+  <!-- 通知详情 -->
+  <view class="card">
+    <text class="card-title">通知内容</text>
+    <view class="info-container">
+      <text class="info-label">发送给: </text>
+      <text class="info-content">{{target_name || '未知用户'}}</text>
+    </view>
+    <view class="info-container">
+      <text class="info-label">内容: </text>
+      <text class="info-content">{{content || '暂无内容'}}</text>
+    </view>
+    <view class="info-container">
+      <text class="info-label">创建时间: </text>
+      <text class="info-content">{{createdAt || '未知时间'}}</text>
+    </view>
+
+    <!-- 操作按钮 -->
+    <view class="button-group">
+      <button class="btn primary-btn" bindtap="markAsViewed">已查阅</button>
+      <button class="btn secondary-btn" bindtap="goBack">返回</button>
+    </view>
+  </view>
+</view>

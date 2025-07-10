@@ -1,0 +1,48 @@
+<view class="container">
+  <view class="bg-circle circle-1"></view>
+  <view class="bg-circle circle-2"></view>
+
+  <view class="title-container">
+    <text class="title">心得体会列表</text>
+    <text class="subtitle">用户：{{userName}}</text>
+  </view>
+
+  <view class="card">
+    <text class="card-title">心得体会</text>
+    <block wx:if="{{reflections.length > 0}}">
+      <block wx:for="{{reflections}}" wx:key="_id" wx:for-item="reflection">
+        <view class="list-item">
+          <view class="item-header" bindtap="goToReflectionDetail" data-id="{{reflection._id}}">
+            <text class="item-title">{{reflection.activityName || '未命名活动'}}</text>
+            <text class="item-time">提交时间: {{reflection.timeFormatted}}</text>
+          </view>
+          <view class="item-images" wx:if="{{reflection.imageUrls && reflection.imageUrls.length > 0}}">
+            <block wx:for="{{reflection.imageUrls}}" wx:key="index" wx:for-item="image">
+              <image src="{{image}}" mode="aspectFill" class="item-image" catchtap="previewImage" data-urls="{{reflection.imageUrls}}" data-current="{{image}}"></image>
+            </block>
+          </view>
+          <view class="item-feedback" bindtap="goToReflectionDetail" data-id="{{reflection._id}}">
+            <text class="label">管理员评价:</text>
+            <text class="feedback-text">{{reflection.feedback || '暂无'}}</text>
+          </view>
+        </view>
+      </block>
+    </block>
+    <text wx:else class="empty-text">暂无心得体会</text>
+  </view>
+
+  <view class="button-container">
+    <button class="btn back-btn" bindtap="goBack">返回</button>
+  </view>
+
+  <view class="modal" wx:if="{{showFeedbackModal}}">
+    <view class="modal-content">
+      <text class="modal-title">编辑管理员评价</text>
+      <textarea class="modal-input" value="{{feedbackInput}}" bindinput="onFeedbackInput" placeholder="请输入评价" auto-height="true" />
+      <view class="modal-buttons">
+        <button class="btn primary-btn" bindtap="saveFeedback">保存</button>
+        <button class="btn secondary-btn" bindtap="cancelFeedback">取消</button>
+      </view>
+    </view>
+  </view>
+</view>

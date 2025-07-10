@@ -1,0 +1,9 @@
+{
+  "triggers": [
+    {
+      "name": "checkSignInTrigger",
+      "type": "timer",
+      "config": "0 0 0 * * * *" // 每天00:00触发
+    }
+  ]
+}

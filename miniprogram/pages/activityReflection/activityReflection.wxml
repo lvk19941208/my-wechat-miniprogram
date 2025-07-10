@@ -1,0 +1,33 @@
+<view class="container">
+  <!-- 背景装饰 -->
+  <view class="bg-circle circle-1"></view>
+  <view class="bg-circle circle-2"></view>
+
+  <!-- 标题 -->
+  <view class="title-container">
+    <text class="title">活动心得体会</text>
+    <text class="subtitle">记录者：{{userName}}</text>
+  </view>
+
+  <!-- 上传区域 -->
+  <view class="card">
+    <text class="card-title">上传手写心得（最多3张）</text>
+    <view class="upload-tip">请上传清晰的手写心得照片</view>
+    <view class="image-grid" wx:if="{{images.length > 0}}">
+      <block wx:for="{{images}}" wx:key="index">
+        <view class="image-item">
+          <image src="{{item.localPath}}" mode="aspectFill" class="preview-image" bindtap="previewImage" data-index="{{index}}"></image>
+          <view class="delete-icon" bindtap="deleteImage" data-index="{{index}}">✕</view>
+        </view>
+      </block>
+    </view>
+    <button class="btn upload-btn" bindtap="chooseImage" disabled="{{images.length >= 3}}">+ 拍照或选择图片</button>
+    <view class="image-count">已上传：{{images.length}}/3</view>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="action-buttons">
+    <button class="btn primary-btn" bindtap="submitReflection" disabled="{{images.length === 0}}">提交心得</button>
+    <button class="btn back-btn" bindtap="goBack">返回首页</button>
+  </view>
+</view>

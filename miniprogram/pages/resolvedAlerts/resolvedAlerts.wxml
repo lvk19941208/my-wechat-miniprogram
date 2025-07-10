@@ -1,0 +1,59 @@
+<view class="container">
+  <!-- 背景装饰 -->
+  <view class="bg-circle circle-1"></view>
+  <view class="bg-circle circle-2"></view>
+
+  <!-- 标题 -->
+  <view class="title-container">
+    <text class="title">已解决风险预警列表</text>
+    <text class="subtitle">记录与关怀同行</text>
+  </view>
+
+  <!-- 搜索区域 -->
+  <view class="search-container">
+    <view class="search-wrapper">
+      <input 
+        type="text" 
+        value="{{searchName}}" 
+        bindinput="onSearchInput" 
+        placeholder="请输入用户名搜索" 
+        class="search-input" 
+      />
+      <button class="btn search-btn" bindtap="searchAlerts">搜索</button>
+    </view>
+  </view>
+
+  <!-- 预警列表 -->
+  <view class="card" wx:if="{{alertList.length > 0}}">
+    <text class="card-title">已解决预警（共 {{total}} 条）</text>
+    <view class="list">
+      <block wx:for="{{alertList}}" wx:key="_id">
+        <view class="list-item" bindtap="toggleExpand" data-index="{{index}}">
+          <view class="summary">
+            <text class="summary-text">用户名: {{item.name}}</text>
+            <text class="summary-text">预警时间: {{item.last_alert_date}}</text>
+            <text class="expand-icon">{{item.expanded ? '收起' : '展开'}}</text>
+          </view>
+          <view class="details" wx:if="{{item.expanded}}">
+            <view class="info">
+              <text>用户ID: {{item._openid}}</text>
+              <text>原因: {{item.alert_reason}}</text>
+              <text>状态: {{item.status === 'active' ? '未解决' : '已解决'}}</text>
+              <text>解决时间: {{item.resolved_date}}</text>
+              <text wx:if="{{item.resolved_reason}}">解决原因: {{item.resolved_reason}}</text>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+    <view class="load-more-container" wx:if="{{hasMore}}">
+      <button class="btn load-more-btn" bindtap="loadMore">加载更多</button>
+    </view>
+  </view>
+  <text class="empty-text" wx:else>暂无已解决的风险预警</text>
+
+  <!-- 返回按钮 -->
+  <view class="button-container">
+    <button class="btn back-btn" bindtap="goBack">返回</button>
+  </view>
+</view>

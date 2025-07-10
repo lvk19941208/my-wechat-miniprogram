@@ -1,0 +1,29 @@
+<view class="container">
+  <!-- 背景装饰 -->
+  <view class="bg-circle circle-1"></view>
+  <view class="bg-circle circle-2"></view>
+
+  <!-- 标题 -->
+  <view class="title-container">
+    <text class="title">{{id ? '编辑通知' : '发布通知'}}</text>
+    <text class="subtitle">{{id ? '修改通知内容' : '创建新的通知'}}</text>
+  </view>
+
+  <!-- 通知详情 -->
+  <view class="card">
+    <text class="card-title">通知详情</text>
+    <view class="input-container">
+      <input type="text" value="{{target_name}}" bindinput="onNameInput" placeholder="请输入目标用户名" class="input" />
+      <text class="hint" wx:if="{{matchingUsers > 0}}">将发送给 {{matchingUsers}} 个同名用户</text>
+    </view>
+    <view class="textarea-container">
+      <textarea value="{{content}}" bindinput="onContentInput" placeholder="请输入通知内容，需要留存类通知，请勿在此发送，通知类信息只保存一周。" class="textarea"></textarea>
+    </view>
+    <view class="button-group">
+      <button class="btn primary-btn" bindtap="submitNotice">提交</button>
+      <!-- 确保删除按钮在 id 不为空时显示 -->
+      <button class="btn danger-btn" bindtap="deleteNotice" wx:if="{{id !== ''}}">删除</button>
+      <button class="btn secondary-btn" bindtap="goBack">取消</button>
+    </view>
+  </view>
+</view>

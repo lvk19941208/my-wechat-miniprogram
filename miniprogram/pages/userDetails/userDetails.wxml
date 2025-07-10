@@ -1,0 +1,104 @@
+<view class="container">
+  <view class="bg-circle circle-1"></view>
+  <view class="bg-circle circle-2"></view>
+
+  <view class="title-container">
+    <text class="title">用户详情</text>
+  </view>
+
+  <view class="card">
+    <view class="user-info">
+      <text class="info-item">用户：{{userName}}</text>
+      <text class="info-item">电话：{{userPhone || '未设置'}}</text>
+      <text class="info-item">监护人电话：{{userGuardianPhone || '未设置'}}</text>
+    </view>
+  </view>
+
+  <view class="card">
+    <text class="card-title">选择年份和月份</text>
+    <view class="filter-section">
+      <view class="filter-item">
+        <text class="label">选择年份</text>
+        <picker mode="selector" range="{{yearList}}" bindchange="onYearChange" value="{{yearIndex}}">
+          <view class="picker">{{selectedYear ? selectedYear : '请选择年份'}}</view>
+        </picker>
+      </view>
+      <view class="filter-item">
+        <text class="label">选择月份</text>
+        <picker mode="selector" range="{{monthList}}" bindchange="onMonthChange" value="{{monthIndex}}" disabled="{{!selectedYear}}">
+          <view class="picker">{{selectedMonth ? selectedMonth : '请选择月份'}}</view>
+        </picker>
+      </view>
+    </view>
+  </view>
+
+  <view class="card">
+    <text class="card-title">签到记录 ({{selectedYear}}-{{selectedMonth}})</text>
+    <view class="summary" wx:if="{{selectedYear && selectedMonth}}">
+      <text>{{selectedMonth}}月：{{totalDays}}天 用户签到：{{checkinDays}}天</text>
+    </view>
+    <block wx:if="{{checkins.length > 0}}">
+      <block wx:for="{{checkins}}" wx:key="_id">
+        <view class="list-item">
+          <text>时间: {{item.timestamp}}</text>
+          <text>地点: {{item.fullAddress || '未知地点'}}</text>
+          <text wx:if="{{item.latitude && item.longitude}}">定位: 纬度 {{item.latitude}}, 经度 {{item.longitude}}</text>
+          <text wx:else>无定位信息</text>
+          <image 
+            wx:if="{{item.photo_url}}" 
+            src="{{item.photo_url}}" 
+            mode="aspectFit" 
+            style="width: 200rpx; height: 200rpx;" 
+            binderror="onImageError" 
+            bindtap="previewImage" 
+            data-urls="{{imageUrls}}" 
+            data-current="{{item.photo_url}}"
+          ></image>
+          <text wx:if="{{!item.photo_url}}">无图片</text>
+        </view>
+      </block>
+    </block>
+    <text wx:else class="empty-text">暂无签到记录</text>
+  </view>
+
+  <view class="card">
+    <text class="card-title">日常分享 ({{selectedYear}}-{{selectedMonth}})</text>
+    <block wx:if="{{dailyLogs.length > 0}}">
+      <block wx:for="{{dailyLogs}}" wx:key="_id">
+        <view class="list-item">
+          <text>时间: {{item.timestamp}}</text>
+          <text>内容: {{item.content}}</text>
+        </view>
+      </block>
+    </block>
+    <text wx:else class="empty-text">暂无日常分享</text>
+  </view>
+
+  <view class="card">
+    <button class="btn primary-btn" bindtap="goToReflectionList">查看心得体会</button>
+    <button class="btn primary-btn" bindtap="showLearningRecords">查看法律学习记录</button>
+  </view>
+
+  <!-- 新增：法律学习记录卡片 -->
+  <view class="card" wx:if="{{learningRecords.length > 0 || showLearningRecords}}">
+  <text class="card-title">法律学习记录</text>
+  <block wx:if="{{learningRecords.length > 0}}">
+    <block wx:for="{{learningRecords}}" wx:key="_id">
+      <view class="list-item">
+        <text>学习时间: {{item.createdAt}}</text>
+        <text>视频名称: {{item.videoTitle}}</text>
+        <text>是否点击学习: {{item.watched ? '是' : '否'}}</text>
+        <text wx:if="{{item.clickTimestamp}}">点击时间: {{item.clickTimestamp}}</text>
+        <text>是否答题: {{item.quizScore !== undefined ? '是' : '否'}}</text>
+        <text wx:if="{{item.quizScore !== undefined}}">答题得分: {{item.quizScore}} 分</text>
+        <text wx:if="{{item.quizTimestamp}}">答题时间: {{item.quizTimestamp}}</text>
+      </view>
+    </block>
+  </block>
+  <text wx:else class="empty-text">暂无法律学习记录</text>
+</view>
+
+  <view class="button-container">
+    <button class="btn back-btn" bindtap="goBack">返回</button>
+  </view>
+</view>

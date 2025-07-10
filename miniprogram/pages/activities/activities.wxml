@@ -1,0 +1,87 @@
+<view class="container">
+  <!-- 调试标记 -->
+  <text class="debug-text">调试：活动管理页面（WXML 已更新，2025-06-19）</text>
+
+  <!-- 背景装饰 -->
+  <view class="bg-circle circle-1"></view>
+  <view class="bg-circle circle-2"></view>
+
+  <!-- 标题 -->
+  <view class="title-container">
+    <text class="title">活动管理</text>
+    <text class="subtitle">组织与记录并重</text>
+  </view>
+
+  <!-- 搜索区域 -->
+  <view class="search-container">
+    <view class="search-wrapper">
+      <input type="text" value="{{searchContent}}" bindinput="onSearchInput" placeholder="请输入活动内容" class="search-input" />
+      <button class="btn search-btn" bindtap="searchActivities">搜索</button>
+    </view>
+  </view>
+
+  <!-- 年份筛选 -->
+  <view class="filter-container">
+    <picker mode="selector" range="{{years}}" bindchange="onYearChange" value="{{selectedYearIndex}}">
+      <view class="filter-wrapper">
+        <text class="filter-label">按年份筛选：</text>
+        <text class="filter-value">{{selectedYear || '全部年份'}}</text>
+      </view>
+    </picker>
+  </view>
+
+  <!-- 搜索结果 -->
+  <view class="card" wx:if="{{searchResults.length > 0}}">
+    <text class="card-title">搜索结果</text>
+    <view class="list">
+      <block wx:for="{{searchResults}}" wx:key="_id">
+        <view class="list-item">
+          <view class="info">
+            <text>日期: {{item.date}}</text>
+            <text>地点: {{item.location}}</text>
+            <text>内容: {{item.content}}</text>
+            <text>邀请地区: {{item.invitedRegionsText}}</text>
+            <text>报名人数: {{item.participantCount}}</text>
+            <text>报名人员: {{item.participantNames || '暂无'}}</text>
+          </view>
+          <view class="btn-group">
+            <button class="btn btn-small primary-btn" bindtap="editActivity" data-id="{{item._id}}">编辑</button>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <!-- 活动列表 -->
+  <view class="card">
+    <view class="action-header">
+      <button class="btn primary-btn" bindtap="goToActivityPublish">发布新活动</button>
+    </view>
+    <view class="list" wx:if="{{activities.length > 0 && !searchContent}}">
+      <block wx:for="{{activities}}" wx:key="_id">
+        <view class="list-item">
+          <view class="info">
+            <text>日期: {{item.date}}</text>
+            <text>地点: {{item.location}}</text>
+            <text>内容: {{item.content}}</text>
+            <text>邀请地区: {{item.invitedRegionsText}}</text>
+            <text>报名人数: {{item.participantCount}}</text>
+            <text>报名人员: {{item.participantNames || '暂无'}}</text>
+          </view>
+          <view class="btn-group">
+            <button class="btn btn-small primary-btn" bindtap="editActivity" data-id="{{item._id}}">编辑</button>
+          </view>
+        </view>
+      </block>
+      <view class="pagination" wx:if="{{activities.length >= pageSize}}">
+        <button class="btn btn-small secondary-btn" bindtap="loadMoreActivities" disabled="{{!hasMoreActivities}}">加载更多</button>
+      </view>
+    </view>
+    <text class="empty-text" wx:else>暂无活动</text>
+  </view>
+
+  <!-- 返回按钮 -->
+  <view class="button-container">
+    <button class="btn back-btn" bindtap="goBack">返回</button>
+  </view>
+</view>

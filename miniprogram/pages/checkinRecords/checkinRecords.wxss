@@ -1,0 +1,111 @@
+.container {
+  padding: 20rpx;
+  background: #f5f5f5;
+  min-height: 100vh;
+}
+
+.title {
+  font-size: 40rpx;
+  font-weight: bold;
+  text-align: center;
+  margin: 30rpx 0;
+  color: #333;
+}
+
+.filter-section {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30rpx;
+}
+
+.filter-item {
+  width: 48%;
+}
+
+.label {
+  font-size: 28rpx;
+  color: #333;
+  margin-bottom: 10rpx;
+  display: block;
+}
+
+.picker {
+  border: 2rpx solid #e5e5e5;
+  border-radius: 10rpx;
+  padding: 15rpx 20rpx;
+  font-size: 28rpx;
+  color: #666;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+}
+
+.list {
+  margin-top: 20rpx;
+}
+
+.list-item {
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #eee;
+  display: flex;
+  flex-direction: column;
+  gap: 10rpx;
+}
+
+.list-item text {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.content-section,
+.feedback-section {
+  margin-top: 10rpx;
+}
+
+.content-section .label,
+.feedback-section .label {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: bold;
+}
+
+.content-section .content,
+.feedback-section .feedback {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.pagination {
+  margin-top: 20rpx;
+  text-align: center;
+}
+
+.btn {
+  border-radius: 10rpx;
+  font-size: 28rpx;
+  padding: 15rpx 25rpx;
+  text-align: center;
+  background: #07c160;
+  color: #fff;
+}
+
+.btn-small {
+  padding: 10rpx 20rpx;
+  font-size: 24rpx;
+}

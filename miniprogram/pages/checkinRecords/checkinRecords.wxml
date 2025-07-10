@@ -1,0 +1,84 @@
+<view class="container">
+  <text class="title">我的记录</text>
+
+  <!-- 年份和月份选择 -->
+  <view class="filter-section">
+    <view class="filter-item">
+      <text class="label">选择年份</text>
+      <picker mode="selector" range="{{yearList}}" bindchange="onYearChange" value="{{yearIndex}}">
+        <view class="picker">
+          {{selectedYear ? selectedYear : '请选择年份'}}
+        </view>
+      </picker>
+    </view>
+    <view class="filter-item">
+      <text class="label">选择月份</text>
+      <picker mode="selector" range="{{monthList}}" bindchange="onMonthChange" value="{{monthIndex}}" disabled="{{!selectedYear}}">
+        <view class="picker">
+          {{selectedMonth ? selectedMonth : '请选择月份'}}
+        </view>
+      </picker>
+    </view>
+  </view>
+
+  <!-- 签到记录 -->
+  <view class="card">
+    <text class="card-title">签到记录</text>
+    <view class="list" wx:if="{{checkins.length > 0}}">
+      <block wx:for="{{checkins}}" wx:key="_id">
+        <view class="list-item">
+          <text>签到时间: {{item.timeFormatted}}</text>
+          <text>地点: {{item.locationFormatted}}</text>
+        </view>
+      </block>
+      <view class="pagination" wx:if="{{checkins.length >= pageSize}}">
+        <button class="btn btn-small" bindtap="loadMoreCheckins" disabled="{{!hasMoreCheckins}}">加载更多</button>
+      </view>
+    </view>
+    <text wx:else>暂无签到记录</text>
+  </view>
+
+  <!-- 日常记录 -->
+  <view class="card">
+    <text class="card-title">日常记录</text>
+    <view class="list" wx:if="{{dailyRecords.length > 0}}">
+      <block wx:for="{{dailyRecords}}" wx:key="_id">
+        <view class="list-item">
+          <text>记录时间: {{item.timeFormatted}}</text>
+          <text>内容: {{item.content}}</text>
+        </view>
+      </block>
+      <view class="pagination" wx:if="{{dailyRecords.length >= pageSize}}">
+        <button class="btn btn-small" bindtap="loadMoreDailyRecords" disabled="{{!hasMoreDailyRecords}}">加载更多</button>
+      </view>
+    </view>
+    <text wx:else>暂无日常记录</text>
+  </view>
+
+  <!-- 活动心得体会 -->
+  <view class="card">
+    <text class="card-title">活动心得体会</text>
+    <view class="list" wx:if="{{reflections.length > 0}}">
+      <block wx:for="{{reflections}}" wx:key="_id">
+        <view class="list-item">
+          <text>提交时间: {{item.timeFormatted}}</text>
+          <text>活动名称: {{item.activityName}}</text>
+          <view class="content-section">
+            <text class="label">心得:</text>
+            <text class="content">{{item.content}}</text>
+          </view>
+          <view class="feedback-section">
+            <text class="label">管理员评价:</text>
+            <text class="feedback">{{item.feedback}}</text>
+          </view>
+        </view>
+      </block>
+      <view class="pagination" wx:if="{{reflections.length >= pageSize}}">
+        <button class="btn btn-small" bindtap="loadMoreReflections" disabled="{{!hasMoreReflections}}">加载更多</button>
+      </view>
+    </view>
+    <text wx:else>暂无活动心得</text>
+  </view>
+
+  <button class="btn" bindtap="goBack">返回</button>
+</view>

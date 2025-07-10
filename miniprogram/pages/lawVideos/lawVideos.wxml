@@ -1,0 +1,31 @@
+<view class="container">
+  <view class="title-container">
+    <text class="title">法律视频管理</text>
+    <text class="subtitle">上传和管理法律知识视频</text>
+  </view>
+
+  <!-- 上传视频区域 -->
+  <view class="upload-container">
+    <input class="input" placeholder="请输入视频标题" bindinput="inputTitle" />
+    <input class="input" placeholder="请输入视频时长（如 3:45）" bindinput="inputDuration" />
+    <picker mode="selector" range="{{quizList}}" range-key="name" bindchange="selectQuiz">
+      <view class="picker">
+        <text>{{selectedQuiz ? selectedQuiz : '请选择题库'}}</text>
+      </view>
+    </picker>
+    <button class="btn upload-btn" bindtap="chooseVideo">选择视频</button>
+    <text class="upload-tip" wx:if="{{videoPath}}">已选择：{{videoName}}</text>
+  </view>
+  <button class="btn submit-btn" bindtap="uploadVideo" disabled="{{!canSubmit}}">上传视频</button>
+
+  <!-- 视频列表 -->
+  <scroll-view scroll-y class="video-list">
+    <block wx:for="{{videoList}}" wx:key="_id">
+      <view class="video-item">
+        <text class="video-title">{{item.title}}</text>
+        <text class="video-duration">时长：{{item.duration}}</text>
+        <button class="delete-btn" bindtap="deleteVideo" data-id="{{item._id}}">删除</button>
+      </view>
+    </block>
+  </scroll-view>
+</view>

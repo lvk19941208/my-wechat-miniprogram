@@ -1,0 +1,12 @@
+<view class="container">
+  <text class="title">管理后台</text>
+  <view class="user-list">
+    <block wx:for="{{users}}" wx:key="_id">
+      <view class="user-item" bindtap="viewUserDetails" data-openid="{{item._openid}}">
+        <text>{{item.name}}</text>
+      </view>
+    </block>
+  </view>
+  <button class="btn" bindtap="exportCheckins">导出签到信息</button>
+  <button class="btn" bindtap="logout">退出登录</button>
+</view>

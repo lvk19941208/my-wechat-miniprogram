@@ -1,0 +1,80 @@
+<view class="container">
+  <!-- 背景装饰 -->
+  <view class="bg-circle circle-1"></view>
+  <view class="bg-circle circle-2"></view>
+
+  <!-- 标题 -->
+  <view class="title-container">
+    <text class="title">我的记录</text>
+    <text class="subtitle">用户：{{userName}}</text>
+  </view>
+
+  <!-- 选择年份和月份 -->
+  <view class="card">
+    <text class="card-title">选择查看时间</text>
+    <view class="picker-group">
+      <picker mode="selector" range="{{yearList}}" bindchange="onYearChange">
+        <view class="picker">年份：{{selectedYear || '请选择年份'}}</view>
+      </picker>
+      <picker mode="selector" range="{{monthList}}" bindchange="onMonthChange" disabled="{{!selectedYear}}">
+        <view class="picker">月份：{{selectedMonth || '请选择月份'}}</view>
+      </picker>
+    </view>
+  </view>
+
+  <!-- 签到记录 -->
+  <view class="card" wx:if="{{selectedYear && selectedMonth}}">
+    <text class="card-title">签到记录 ({{selectedYear}}-{{selectedMonth}})</text>
+    <view class="record-list" wx:if="{{checkins.length > 0}}">
+      <view class="item" wx:for="{{checkins}}" wx:key="_id" wx:for-item="checkin">
+        <text class="item-label">签到时间：</text><text>{{checkin.timestamp}}</text>
+        <text class="item-label">签到地点：</text>
+        <text wx:if="{{checkin.fullAddress}}">{{checkin.fullAddress}}</text>
+        <text wx:else>暂无地址</text>
+        <text class="item-label">签到照片：</text>
+        <image wx:if="{{checkin.photo_url}}" src="{{checkin.photo_url}}" mode="aspectFit" class="record-image" catchtap="previewImage" data-urls="{{[checkin.photo_url]}}" data-current="{{checkin.photo_url}}" binderror="onImageError"></image>
+        <text wx:if="{{!checkin.photo_url}}">无照片</text>
+      </view>
+      <button class="btn load-more-btn" bindtap="loadMoreCheckins" wx:if="{{hasMoreCheckins}}">加载更多</button>
+    </view>
+    <text class="no-data" wx:else>本月暂无签到记录</text>
+  </view>
+
+  <!-- 日常分享 -->
+  <view class="card" wx:if="{{selectedYear && selectedMonth}}">
+    <text class="card-title">日常分享 ({{selectedYear}}-{{selectedMonth}})</text>
+    <view class="record-list" wx:if="{{dailyLogs.length > 0}}">
+      <view class="item" wx:for="{{dailyLogs}}" wx:key="_id">
+        <text class="item-label">分享时间：</text><text>{{item.timestamp}}</text>
+        <text class="item-label">分享内容：</text><text>{{item.content}}</text>
+      </view>
+      <button class="btn load-more-btn" bindtap="loadMoreDailyLogs" wx:if="{{hasMoreDailyLogs}}">加载更多</button>
+    </view>
+    <text class="no-data" wx:else>本月暂无日常分享</text>
+  </view>
+
+  <!-- 活动心得 -->
+  <view class="card" wx:if="{{selectedYear && selectedMonth}}">
+    <text class="card-title">活动心得 ({{selectedYear}}-{{selectedMonth}})</text>
+    <view class="record-list" wx:if="{{reflections.length > 0}}">
+      <view class="item" wx:for="{{reflections}}" wx:key="_id" wx:for-item="reflection">
+        <text class="item-label">提交时间：</text><text>{{reflection.timestamp}}</text>
+        <!-- 显示图片 -->
+        <text class="item-label">心得图片：</text>
+        <view class="image-list" wx:if="{{reflection.imageUrls && reflection.imageUrls.length > 0}}">
+          <block wx:for="{{reflection.imageUrls}}" wx:key="index" wx:for-item="image">
+            <image src="{{image}}" mode="aspectFit" class="record-image" catchtap="previewImage" data-urls="{{reflection.imageUrls}}" data-current="{{image}}" binderror="onImageError"></image>
+          </block>
+        </view>
+        <text wx:if="{{!reflection.imageUrls || reflection.imageUrls.length === 0}}">无图片</text>
+        <text class="item-label" wx:if="{{reflection.feedback}}">帮教员评价：</text><text wx:if="{{reflection.feedback}}">{{reflection.feedback}}</text>
+        <text class="item-label" wx:if="{{reflection.feedback_timestamp}}">评价时间：</text><text wx:if="{{reflection.feedback_timestamp}}">{{reflection.feedback_timestamp}}</text>
+      </view>
+      <button class="btn load-more-btn" bindtap="loadMoreReflections" wx:if="{{hasMoreReflections}}">加载更多</button>
+    </view>
+    <text class="no-data" wx:else>本月暂无活动心得</text>
+  </view>
+
+  <!-- 返回按钮 -->
+  <button class="btn back-btn" bindtap="goBack">返回首页</button>
+</view>

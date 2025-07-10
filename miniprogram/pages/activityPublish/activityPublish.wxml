@@ -1,0 +1,94 @@
+<view class="container">
+  <!-- 背景装饰 -->
+  <view class="bg-circle circle-1"></view>
+  <view class="bg-circle circle-2"></view>
+
+  <!-- 标题 -->
+  <view class="title-container">
+    <text class="title">{{activityId ? '编辑活动' : '活动发布'}}</text>
+    <text class="subtitle">{{activityId ? '修改活动信息' : '创建新的活动'}}</text>
+  </view>
+
+  <!-- 表单区域 -->
+  <view class="form-container">
+    <view class="form-item">
+      <text class="label">活动时间</text>
+      <picker mode="date" value="{{activityDate}}" bindchange="onDateChange" class="picker">
+        <view class="picker-content">
+          <text>{{activityDate || '请选择日期'}}</text>
+          <text class="arrow">▼</text>
+        </view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <text class="label">活动地点</text>
+      <input type="text" value="{{activityLocation}}" bindinput="onLocationInput" placeholder="请输入活动地点" class="input" />
+    </view>
+
+    <view class="form-item">
+      <text class="label">活动内容</text>
+      <textarea value="{{activityContent}}" bindinput="onContentInput" placeholder="请输入活动内容" class="textarea"></textarea>
+    </view>
+
+    <!-- 选择参与地区 -->
+    <view class="form-item">
+      <text class="label">邀请地区</text>
+      <view class="region-selector">
+        <!-- 第一个下拉框：锁定管理员地区 -->
+        <picker
+          mode="selector"
+          range="{{regionList}}"
+          value="{{regionIndexes[0]}}"
+          bindchange="onRegionChange"
+          data-index="0"
+          disabled="{{!isSuperAdmin}}"
+          class="region-picker {{!isSuperAdmin ? 'disabled' : ''}}"
+        >
+          <view class="picker-content">
+            <text>{{invitedRegions[0] || '请选择地区'}}</text>
+            <text class="arrow">▼</text>
+          </view>
+        </picker>
+
+        <!-- 第二个下拉框：选择其他地区 -->
+        <picker
+          mode="selector"
+          range="{{regionOptions2}}"
+          value="{{regionIndexes[1]}}"
+          bindchange="onRegionChange"
+          data-index="1"
+          class="region-picker"
+        >
+          <view class="picker-content">
+            <text>{{invitedRegions[1] || '未选'}}</text>
+            <text class="arrow">▼</text>
+          </view>
+        </picker>
+
+        <!-- 第三个下拉框：选择其他地区 -->
+        <picker
+          mode="selector"
+          range="{{regionOptions3}}"
+          value="{{regionIndexes[2]}}"
+          bindchange="onRegionChange"
+          data-index="2"
+          class="region-picker"
+        >
+          <view class="picker-content">
+            <text>{{invitedRegions[2] || '未选'}}</text>
+            <text class="arrow">▼</text>
+          </view>
+        </picker>
+      </view>
+      <text class="debug-text">当前邀请地区：{{selectedRegions}}</text>
+    </view>
+
+    <view class="button-group">
+      <button class="btn primary-btn" bindtap="publishActivity" wx:if="{{!activityId}}">发布活动</button>
+      <button class="btn primary-btn" bindtap="updateActivity" wx:if="{{activityId}}">更新活动</button>
+      <button class="btn danger-btn" bindtap="deleteActivity" wx:if="{{activityId}}">删除活动</button>
+      <button class="btn secondary-btn" bindtap="goBack">返回</button>
+    </view>
+  </view>
+</view>

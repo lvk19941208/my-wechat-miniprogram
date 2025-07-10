@@ -1,0 +1,58 @@
+<view class="container">
+  <!-- 背景装饰 -->
+  <view class="bg-circle circle-1"></view>
+  <view class="bg-circle circle-2"></view>
+
+  <!-- 标题 -->
+  <view class="title-container">
+    <text class="title">法律课堂</text>
+    <text class="subtitle">学习法律知识，开启成长之旅</text>
+  </view>
+
+  <!-- 视频列表卡片 -->
+  <view class="card">
+    <text class="card-title">法律视频列表</text>
+    <block wx:if="{{videoList.length > 0}}">
+      <block wx:for="{{videoList}}" wx:key="id">
+        <view class="video-item" bindtap="selectVideo" data-id="{{item.id}}">
+          <text class="video-title">{{item.title}}</text>
+          <text class="video-duration">时长: {{item.duration}}</text>
+          <text class="video-status">{{item.watched ? '已观看' : '未观看'}}</text>
+        </view>
+      </block>
+    </block>
+    <text wx:else class="empty-text">暂无视频</text>
+  </view>
+
+  <!-- 视频播放卡片 -->
+  <view class="card video-card" wx:if="{{currentVideoUrl}}">
+    <text class="card-title">正在播放</text>
+    <video
+      id="lawVideo"
+      src="{{currentVideoUrl}}"
+      controls="{{allowSeek}}"
+      show-fullscreen-btn="{{true}}"
+      bindtimeupdate="onTimeUpdate"
+      bindended="onVideoEnd"
+      bindplay="onVideoPlay"
+      bindpause="onVideoPause"
+      bindfullscreenchange="onFullscreenChange"
+      class="video-player"
+    ></video>
+    <view class="custom-controls">
+      <button class="control-btn play-btn" bindtap="togglePlay">{{isPlaying ? '暂停' : '播放'}}</button>
+      <button class="control-btn fullscreen-btn" bindtap="toggleFullScreen">{{isFullscreen ? '退出全屏' : '全屏'}}</button>
+      <text class="watch-time">已观看: {{watchTime}} 秒 / {{totalDuration}} 秒</text>
+    </view>
+    <text class="hint-text" wx:if="{{allowSeek}}">您已完成观看，可以自由回看视频内容</text>
+    <button class="btn primary-btn" bindtap="goToQuiz" wx:if="{{showQuizButton}}">进入答题</button>
+  </view>
+
+  <!-- 底部按钮 -->
+  <view class="button-container">
+    <button class="btn back-btn" bindtap="goBack">返回</button>
+  </view>
+
+  <!-- 底部提示 -->
+  <text class="footer-text">让我们一起学习，成长为更好的自己</text>
+</view>

@@ -1,0 +1,20 @@
+<view class="container">
+  <!-- 背景装饰 -->
+  <view class="bg-circle circle-1"></view>
+  <view class="bg-circle circle-2"></view>
+
+  <!-- 标题 -->
+  <view class="title-container">
+    <text class="title">我的日常分享</text>
+    <text class="subtitle">记录生活点滴，分享你的每一天</text>
+  </view>
+
+  <!-- 输入区域 -->
+  <view class="card">
+    <textarea class="textarea" placeholder="今天过得怎么样？写下来吧！" bindinput="onContentInput" value="{{content}}"></textarea>
+    <button class="btn primary-btn" bindtap="onSubmit">提交分享</button>
+  </view>
+
+  <!-- 返回按钮 -->
+  <button class="btn back-btn" bindtap="goBack">返回首页</button>
+</view>

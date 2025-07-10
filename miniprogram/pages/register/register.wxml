@@ -1,0 +1,32 @@
+<view class="container">
+  <!-- 背景装饰 -->
+  <view class="bg-circle circle-1"></view>
+  <view class="bg-circle circle-2"></view>
+
+  <!-- 标题 -->
+  <view class="title-container">
+    <text class="title">欢迎注册</text>
+    <text class="subtitle">填写信息，开始你的成长之旅</text>
+  </view>
+
+  <!-- 表单 -->
+  <view class="card">
+    <view class="form-item">
+      <text class="label">你的名字</text>
+      <input type="text" value="{{newName}}" bindinput="onNameInput" placeholder="请输入你的名字" class="input" adjust-position="{{true}}" />
+    </view>
+    <view class="form-item">
+      <text class="label">所在地区</text>
+      <picker mode="selector" range="{{regionList}}" bindchange="onRegionChange" value="{{regionIndex}}">
+        <view class="picker">
+          <text class="picker-text">{{region ? region : '请选择地区'}}</text>
+          <text class="arrow">▼</text>
+        </view>
+      </picker>
+    </view>
+    <button class="btn primary-btn" bindtap="registerUser" disabled="{{isSubmitting}}">{{isSubmitting ? '注册中...' : '确认注册'}}</button>
+  </view>
+
+  <!-- 返回按钮 -->
+  <button class="btn back-btn" bindtap="goBack">返回</button>
+</view>

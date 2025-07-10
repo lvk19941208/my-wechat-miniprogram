@@ -1,0 +1,41 @@
+<view class="container">
+  <!-- 调试标记 -->
+  <text class="debug-text">调试：活动通知页面（WXML 已更新，2025-06-16）</text>
+
+  <!-- 背景装饰 -->
+  <view class="bg-circle circle-1"></view>
+  <view class="bg-circle circle-2"></view>
+
+  <!-- 标题 -->
+  <view class="title-container">
+    <text class="title">本月活动通知</text>
+    <text class="subtitle">了解活动详情，准时参与</text>
+  </view>
+
+  <!-- 活动详情 -->
+  <view class="card">
+    <text class="card-title">活动详情</text>
+    <view class="activity-detail">
+      <view class="detail-item">
+        <text class="label">活动时间：</text>
+        <text class="value">{{activity.date || '暂无时间'}}</text>
+      </view>
+      <view class="detail-item">
+        <text class="label">活动地点：</text>
+        <text class="value">{{activity.location || '暂无地点'}}</text>
+      </view>
+      <view class="detail-item">
+        <text class="label">活动内容：</text>
+        <text class="value">{{activity.content || '暂无内容'}}</text>
+      </view>
+      <view class="detail-item">
+        <text class="label">报名状态：</text>
+        <text class="value {{isRegistered ? 'status-success' : 'status-error'}}">{{isRegistered ? '已报名' : '未报名'}}</text>
+      </view>
+    </view>
+    <button class="btn primary-btn" bindtap="registerActivity" disabled="{{isRegistered || isRegistering}}">{{isRegistering ? '报名中...' : isRegistered ? '已报名' : '立即报名'}}</button>
+  </view>
+
+  <!-- 返回按钮 -->
+  <button class="btn back-btn" bindtap="goBack">返回首页</button>
+</view>

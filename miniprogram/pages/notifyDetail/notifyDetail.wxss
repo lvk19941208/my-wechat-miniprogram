@@ -1,0 +1,127 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(135deg, #87CEEB 0%, #ADD8E6 100%);
+  position: relative;
+  overflow: hidden;
+  padding: 20rpx;
+}
+
+.bg-circle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  pointer-events: none;
+}
+
+.circle-1 {
+  width: 350rpx;
+  height: 350rpx;
+  top: -80rpx;
+  left: -80rpx;
+  animation: float 5s infinite ease-in-out;
+}
+
+.circle-2 {
+  width: 280rpx;
+  height: 280rpx;
+  bottom: -60rpx;
+  right: -60rpx;
+  animation: float 7s infinite ease-in-out reverse;
+}
+
+.title-container {
+  text-align: center;
+  margin: 40rpx 0 60rpx;
+}
+
+.title {
+  font-size: 48rpx;
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 0 2rpx 6rpx rgba(0, 0, 0, 0.15);
+  animation: fadeIn 1s ease-in;
+}
+
+.subtitle {
+  font-size: 32rpx;
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 16rpx;
+  animation: fadeIn 1.2s ease-in;
+}
+
+.card {
+  width: 90%;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 6rpx 12rpx rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 40rpx;
+}
+
+.info-container {
+  margin-bottom: 30rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.info-label {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #555;
+}
+
+.info-content {
+  font-size: 28rpx;
+  color: #333;
+  margin-top: 10rpx;
+  line-height: 40rpx;
+}
+
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20rpx;
+}
+
+.btn {
+  flex: 1;
+  border-radius: 40rpx;
+  font-size: 32rpx;
+  padding: 20rpx;
+  color: #fff;
+  transition: transform 0.3s;
+  min-width: 200rpx;
+}
+
+.btn:hover {
+  transform: scale(1.03);
+}
+
+.primary-btn {
+  background: linear-gradient(90deg, #1E90FF 0%, #87CEFA 100%);
+}
+
+.secondary-btn {
+  background: linear-gradient(90deg, #A9A9A9 0%, #D3D3D3 100%);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-25rpx); }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(15rpx); }
+  100% { opacity: 1; transform: translateY(0); }
+}

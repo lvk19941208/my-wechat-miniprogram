@@ -1,0 +1,36 @@
+<view class="container">
+  <view class="title-container">
+    <text class="title">课后答题</text>
+    <text class="subtitle">测试你的法律知识</text>
+  </view>
+
+  <view class="question-container">
+    <block wx:for="{{questions}}" wx:key="index" wx:for-index="qIndex">
+      <view class="question-item">
+        <text class="question-text">{{qIndex + 1}}. {{item.question}}</text>
+        <view class="custom-radio-group">
+          <block wx:for="{{item.options}}" wx:key="index" wx:for-index="oIndex">
+            <view 
+              class="custom-radio" 
+              bindtap="selectCustomAnswer" 
+              data-qindex="{{qIndex}}" 
+              data-oindex="{{oIndex}}"
+            >
+              <view class="radio-circle {{questions[qIndex].selected === oIndex ? 'selected' : ''}}">
+                <view class="inner-circle" wx:if="{{questions[qIndex].selected === oIndex}}"></view>
+              </view>
+              <text>{{item}}</text>
+            </view>
+          </block>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <button class="btn submit-btn" bindtap="submitQuiz" disabled="{{!canSubmit}}">提交答案</button>
+
+  <view class="result" wx:if="{{showResult}}">
+    <text>你的得分：{{score}}</text>
+    <text wx:if="{{score < 60}}" class="fail-text">学习不合格，请重新学习！</text>
+  </view>
+</view>

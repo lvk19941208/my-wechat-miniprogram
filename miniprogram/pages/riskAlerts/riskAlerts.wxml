@@ -1,0 +1,36 @@
+<view class="container">
+  <view class="title">风险预警</view>
+  <view wx:if="{{alertList.length === 0}}" class="no-data">
+    暂无活跃预警
+  </view>
+  <view wx:else>
+    <view wx:for="{{alertList}}" wx:key="_id" class="alert-item">
+      <view class="alert-header">
+        <text class="alert-name">{{item.name}}</text>
+        <text class="alert-status {{item.status === 'active' ? 'active' : 'resolved'}}">
+          {{item.status === 'active' ? '未解决' : '已解决'}}
+        </text>
+      </view>
+      <view class="alert-detail">
+        <text>预警原因：{{item.displayReason}}</text>
+      </view>
+      <view wx:if="{{item.status === 'resolved' && item.resolved_reason}}" class="alert-detail">
+        <text>解决原因：{{item.resolved_reason}}</text>
+      </view>
+      <view class="alert-footer">
+        <text>最后更新：{{item.last_alert_date}}</text>
+        <button 
+          wx:if="{{item.status === 'active'}}" 
+          class="resolve-btn" 
+          data-id="{{item._id}}" 
+          bindtap="resolveAlert"
+        >
+          标记为解决
+        </button>
+      </view>
+    </view>
+  </view>
+  <view class="footer">
+    <button class="back-btn" bindtap="goBack">返回</button>
+  </view>
+</view>

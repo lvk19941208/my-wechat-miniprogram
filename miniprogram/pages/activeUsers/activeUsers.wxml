@@ -1,0 +1,137 @@
+<view class="container">
+  <!-- 背景装饰 -->
+  <view class="bg-circle circle-1"></view>
+  <view class="bg-circle circle-2"></view>
+
+  <!-- 标题 -->
+  <view class="title-container">
+    <text class="title">正在帮教的孩子 - {{region}}</text>
+    <text class="subtitle">管理与关怀并行</text>
+  </view>
+
+  <!-- 搜索区域 -->
+  <view class="search-container">
+    <view class="search-wrapper">
+      <input type="text" value="{{searchName}}" bindinput="onSearchInput" placeholder="请输入用户名" class="search-input" />
+      <button class="btn search-btn" bindtap="searchUsers">搜索</button>
+    </view>
+  </view>
+
+  <!-- 搜索结果 -->
+  <view class="card" wx:if="{{searchResults.length > 0}}">
+    <text class="card-title">搜索结果</text>
+    <view class="list">
+      <block wx:for="{{searchResults}}" wx:key="_id">
+        <view class="list-item">
+          <view class="info">
+            <text>姓名: {{item.name}}</text>
+            <text>电话: {{item.phone || '未设置'}}</text>
+            <text>监护人电话: {{item.guardianPhone || '未设置'}}</text>
+            <text>帮教开始: {{item.startDate || '未设置'}}</text>
+            <text>帮教结束: {{item.endDate || '未设置'}}</text>
+          </view>
+          <view class="btn-group">
+            <button class="btn btn-small primary-btn" bindtap="goToUserDetails" data-openid="{{item._openid}}">查看记录</button>
+            <button class="btn btn-small secondary-btn" bindtap="showUpdateNameModal" data-openid="{{item._openid}}" data-name="{{item.name}}">更改用户名</button>
+            <button class="btn btn-small secondary-btn" bindtap="showUpdatePhoneModal" data-openid="{{item._openid}}" data-phone="{{item.phone || ''}}">设置电话</button>
+            <button class="btn btn-small secondary-btn" bindtap="showUpdateGuardianPhoneModal" data-openid="{{item._openid}}" data-guardian-phone="{{item.guardianPhone || ''}}">设置监护人电话</button>
+            <button class="btn btn-small secondary-btn" bindtap="showUpdateEndDateModal" data-openid="{{item._openid}}" data-start-date="{{item.startDate || ''}}" data-end-date="{{item.endDate || ''}}">设置帮教日期</button>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <!-- 用户列表 -->
+  <view class="card" wx:if="{{activeUsers.length > 0 && !searchName}}">
+    <text class="card-title">用户列表</text>
+    <view class="list">
+      <block wx:for="{{activeUsers}}" wx:key="_id">
+        <view class="list-item">
+          <view class="info">
+            <text>姓名: {{item.name}}</text>
+            <text>电话: {{item.phone || '未设置'}}</text>
+            <text>监护人电话: {{item.guardianPhone || '未设置'}}</text>
+            <text>帮教开始: {{item.startDate || '未设置'}}</text>
+            <text>帮教结束: {{item.endDate || '未设置'}}</text>
+          </view>
+          <view class="btn-group">
+            <button class="btn btn-small primary-btn" bindtap="goToUserDetails" data-openid="{{item._openid}}">查看记录</button>
+            <button class="btn btn-small secondary-btn" bindtap="showUpdateNameModal" data-openid="{{item._openid}}" data-name="{{item.name}}">更改用户名</button>
+            <button class="btn btn-small secondary-btn" bindtap="showUpdatePhoneModal" data-openid="{{item._openid}}" data-phone="{{item.phone || ''}}">设置电话</button>
+            <button class="btn btn-small secondary-btn" bindtap="showUpdateGuardianPhoneModal" data-openid="{{item._openid}}" data-guardian-phone="{{item.guardianPhone || ''}}">设置监护人电话</button>
+            <button class="btn btn-small secondary-btn" bindtap="showUpdateEndDateModal" data-openid="{{item._openid}}" data-start-date="{{item.startDate || ''}}" data-end-date="{{item.endDate || ''}}">设置帮教日期</button>
+          </view>
+        </view>
+      </block>
+      <view class="pagination" wx:if="{{hasMoreUsers}}">
+        <button class="btn btn-small secondary-btn" bindtap="loadMoreUsers" disabled="{{!hasMoreUsers}}">加载更多</button>
+      </view>
+    </view>
+  </view>
+  <text class="empty-text" wx:else>暂无正在帮教的孩子</text>
+
+  <!-- 返回按钮 -->
+  <view class="button-container">
+    <button class="btn back-btn" bindtap="goBack">返回</button>
+  </view>
+
+  <!-- 弹窗：更改用户名 -->
+  <view wx:if="{{showUpdateNameModal}}" class="modal">
+    <view class="modal-content">
+      <text class="modal-title">更改用户名</text>
+      <input type="text" value="{{newName}}" bindinput="onNameInput" placeholder="请输入新用户名" class="modal-input" />
+      <view class="modal-buttons">
+        <button class="btn primary-btn" bindtap="updateName">确认</button>
+        <button class="btn secondary-btn" bindtap="cancelUpdateName">取消</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 弹窗：设置电话 -->
+  <view wx:if="{{showUpdatePhoneModal}}" class="modal">
+    <view class="modal-content">
+      <text class="modal-title">设置电话号码</text>
+      <input type="number" value="{{newPhone}}" bindinput="onPhoneInput" placeholder="请输入电话号码" class="modal-input" />
+      <view class="modal-buttons">
+        <button class="btn primary-btn" bindtap="updatePhone">确认</button>
+        <button class="btn secondary-btn" bindtap="cancelUpdatePhone">取消</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 弹窗：设置监护人电话 -->
+  <view wx:if="{{showUpdateGuardianPhoneModal}}" class="modal">
+    <view class="modal-content">
+      <text class="modal-title">设置监护人电话</text>
+      <input type="number" value="{{newGuardianPhone}}" bindinput="onGuardianPhoneInput" placeholder="请输入监护人电话" class="modal-input" />
+      <view class="modal-buttons">
+        <button class="btn primary-btn" bindtap="updateGuardianPhone">确认</button>
+        <button class="btn secondary-btn" bindtap="cancelUpdateGuardianPhone">取消</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 弹窗：设置帮教日期 -->
+  <view wx:if="{{showUpdateEndDateModal}}" class="modal">
+    <view class="modal-content">
+      <text class="modal-title">设置帮教日期</text>
+      <picker mode="date" value="{{newStartDate}}" bindchange="onStartDateChange">
+        <view class="picker">
+          开始日期: {{newStartDate || '请选择开始日期'}}
+          <text class="arrow">▼</text>
+        </view>
+      </picker>
+      <picker mode="date" value="{{newEndDate}}" bindchange="onEndDateChange">
+        <view class="picker">
+          结束日期: {{newEndDate || '请选择结束日期'}}
+          <text class="arrow">▼</text>
+        </view>
+      </picker>
+      <view class="modal-buttons">
+        <button class="btn primary-btn" bindtap="updateEndDate">确认</button>
+        <button class="btn secondary-btn" bindtap="cancelUpdateEndDate">取消</button>
+      </view>
+    </view>
+  </view>
+</view>

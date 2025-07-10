@@ -1,0 +1,24 @@
+<view class="container">
+  <!-- 背景装饰 -->
+  <view class="bg-circle circle-1"></view>
+  <view class="bg-circle circle-2"></view>
+
+  <!-- 标题 -->
+  <view class="title-container">
+    <text class="title">欢迎体验成长帮教</text>
+    <text class="subtitle">从现在开始，一起改变</text>
+  </view>
+
+  <!-- 按钮容器 -->
+  <view class="button-container">
+    <button class="btn wechat-btn" open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" disabled="{{wechatBtnDisabled}}">
+      微信快速登录
+    </button>
+    <button class="btn admin-btn" bindtap="onAdminLogin" disabled="{{adminBtnDisabled}}">
+      帮教员登录
+    </button>
+  </view>
+
+  <!-- 底部提示 -->
+  <text class="footer-text">让我们携手，走向更好的明天</text>
+</view>

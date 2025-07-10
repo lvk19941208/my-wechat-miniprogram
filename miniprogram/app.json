@@ -1,0 +1,50 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/checkin/checkin",
+    "pages/daily/daily",
+    "pages/admin/admin",
+    "pages/adminLogin/adminLogin",
+    "pages/adminDashboard/adminDashboard",
+    "pages/userDetails/userDetails",
+    "pages/index/index",
+    "pages/register/register",
+    "pages/activityReflection/activityReflection",
+    "pages/reflectionList/reflectionList",
+    "pages/reflectionDetail/reflectionDetail",
+    "pages/myRecords/myRecords",
+    "pages/activityPublish/activityPublish",
+    "pages/activityNotice/activityNotice",
+    "pages/activeUsers/activeUsers",
+    "pages/endedUsers/endedUsers",
+    "pages/checkinRecords/checkinRecords",
+    "pages/activities/activities",
+    "pages/notifyUsers/notifyUsers",      
+    "pages/notifyPublish/notifyPublish",  
+    "pages/notifyDetail/notifyDetail",
+    "pages/riskAlerts/riskAlerts",
+    "pages/resolvedAlerts/resolvedAlerts",
+    "pages/lawClassroom/lawClassroom"  ,
+    "pages/lawVideos/lawVideos",
+    "pages/lawQuiz/lawQuiz"
+  ],
+  "window": {
+    "navigationBarTitleText": "帮教系统",
+    "navigationBarBackgroundColor": "#f8f8f8",
+    "navigationBarTextStyle": "black",
+    "backgroundTextStyle": "light"
+  },
+  "requiredPrivateInfos": [
+    "getLocation"
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "需要获取您的位置用于签到"
+    }
+  },
+  "sitemapLocation": "sitemap.json",
+  "networkTimeout": {
+    "request": 10000
+  },
+  "style": "v2"
+}

@@ -1,0 +1,76 @@
+<view class="container">
+  <!-- 背景装饰 -->
+  <view class="bg-circle circle-1"></view>
+  <view class="bg-circle circle-2"></view>
+
+  <!-- 标题 -->
+  <view class="title-container">
+    <text class="title">帮教管理中心</text>
+    <text class="subtitle">守护未成年人成长</text>
+  </view>
+
+  <!-- 地区选择（超级管理员可见） -->
+  <view class="region-container" wx:if="{{isSuperAdmin}}">
+    <view class="region-wrapper">
+      <text class="label">选择地区</text>
+      <picker mode="selector" range="{{regionList}}" bindchange="onRegionChange" value="{{regionIndex}}">
+        <view class="picker">
+          <text class="picker-text">{{region ? region : '请选择地区'}}</text>
+          <text class="arrow">▼</text>
+        </view>
+      </picker>
+    </view>
+  </view>
+
+  <!-- 普通管理员显示固定地区 -->
+  <view class="region-container" wx:else>
+    <view class="region-wrapper">
+      <text class="label">当前地区</text>
+      <view class="picker">
+        <text class="picker-text">{{region}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 按钮区域 -->
+  <view class="button-container">
+    <view class="button-row">
+      <button class="btn primary-btn" bindtap="goToActiveUsers">
+        <text class="btn-text">正在帮教的孩子</text>
+      </button>
+      <button class="btn primary-btn" bindtap="goToEndedUsers">
+        <text class="btn-text">已结束帮教的孩子</text>
+      </button>
+    </view>
+    <view class="button-row">
+      <button class="btn primary-btn" bindtap="goToActivities">
+        <text class="btn-text">活动管理</text>
+      </button>
+      <button class="btn primary-btn" bindtap="goToNotifyUsers">
+        <text class="btn-text">发送通知</text>
+      </button>
+    </view>
+    <view class="button-row">
+      <button class="btn primary-btn" bindtap="goToRiskAlerts">
+        <text class="btn-text">风险预警</text>
+      </button>
+      <button class="btn primary-btn" bindtap="goToResolvedAlerts">
+        <text class="btn-text">已解决风险预警</text>
+      </button>
+    </view>
+    <view class="button-row">
+      <button class="btn primary-btn" bindtap="goToLawVideos">
+        <text class="btn-text">法律视频管理</text>
+      </button>
+      <button class="btn primary-btn" bindtap="exportUserData">
+        <text class="btn-text">导出用户数据</text>
+      </button>
+    </view>
+    <button class="btn back-btn" bindtap="goBack">
+      <text class="btn-text">返回</text>
+    </button>
+  </view>
+
+  <!-- 底部提示 -->
+  <text class="footer-text">每一步都在改变</text>
+</view>

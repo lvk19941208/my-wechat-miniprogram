@@ -1,0 +1,109 @@
+.container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #87CEEB 0%, #ADD8E6 100%);
+  padding: 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title-container {
+  text-align: center;
+  margin: 20rpx 0 40rpx;
+}
+
+.title {
+  font-size: 48rpx;
+  color: #fff;
+  font-weight: bold;
+}
+
+.subtitle {
+  font-size: 28rpx;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.upload-container {
+  width: 90%;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20rpx;
+  padding: 20rpx;
+  margin-bottom: 40rpx;
+}
+
+.input {
+  width: 100%;
+  padding: 20rpx;
+  font-size: 32rpx;
+  background: #fff;
+  border-radius: 10rpx;
+  margin-bottom: 20rpx;
+}
+
+.picker {
+  width: 100%;
+  padding: 20rpx;
+  font-size: 32rpx;
+  background: #fff;
+  border-radius: 10rpx;
+  margin-bottom: 20rpx;
+  color: #333;
+}
+
+.upload-btn {
+  width: 100%;
+  padding: 20rpx;
+  background: linear-gradient(90deg, #1E90FF 0%, #87CEFA 100%);
+  color: #fff;
+  font-size: 32rpx;
+  border-radius: 50rpx;
+}
+
+.upload-tip {
+  font-size: 28rpx;
+  color: #666;
+  margin-top: 10rpx;
+}
+
+.submit-btn {
+  width: 60%;
+  padding: 28rpx;
+  background: linear-gradient(90deg, #32CD32 0%, #66CDAA 100%);
+  color: #fff;
+  font-size: 36rpx;
+  border-radius: 60rpx;
+  margin-bottom: 40rpx;
+}
+
+.video-list {
+  width: 90%;
+  height: 50vh;
+}
+
+.video-item {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20rpx;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.video-title {
+  font-size: 32rpx;
+  color: #333;
+}
+
+.video-duration {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.delete-btn {
+  padding: 10rpx 20rpx;
+  background: #FF4500;
+  color: #fff;
+  font-size: 28rpx;
+  border-radius: 10rpx;
+}

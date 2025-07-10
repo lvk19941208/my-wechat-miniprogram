@@ -1,0 +1,25 @@
+<view class="container">
+  <!-- 背景装饰 -->
+  <view class="bg-circle circle-1"></view>
+  <view class="bg-circle circle-2"></view>
+
+  <!-- 标题 -->
+  <view class="title-container">
+    <text class="title">欢迎你，{{userName}}</text>
+    <text class="subtitle">今天也是全新的一天</text>
+  </view>
+
+  <!-- 按钮容器 -->
+  <view class="button-container">
+    <button class="btn primary-btn" bindtap="goToCheckin">我要签到</button>
+    <button class="btn secondary-btn" bindtap="goToCheckinRecords">我的签到记录</button>
+    <!-- <button class="btn secondary-btn" bindtap="goToDaily">我的日常分享</button>-->
+    <button class="btn secondary-btn" bindtap="goToActivityReflection">活动心得体会</button>
+    <button class="btn secondary-btn" bindtap="goToLawClassroom">法律知识小课堂</button>
+    <button class="btn notice-btn" bindtap="goToActivityNotice" wx:if="{{showActivityNotice}}">本月活动通知</button>
+    <button class="btn notice-btn" bindtap="goToNotifyDetail" wx:if="{{showNotify}}">帮教最新通知</button>
+  </view>
+
+  <!-- 底部提示 -->
+  <text class="footer-text">每一步都在成长</text>
+</view>
