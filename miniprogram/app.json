@@ -34,7 +34,7 @@
     "pages/articleViewer/articleViewer",
     "pages/consult/consult",
     "pages/legalConsult/legalConsult",
-    "pages/legalMessages/legalMessages"
+    "pages/legalMessage/legalMessage"
   ],
   "window": {
     "navigationBarTitleText": "帮教系统",

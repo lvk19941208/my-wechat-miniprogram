@@ -2,15 +2,18 @@
   <scroll-view class="chat-history" scroll-y="true">
     <block wx:for="{{messages}}" wx:key="index">
       <view class="chat-bubble">
-        <text class="chat-name">{{item.name}}：</text>
-        <text class="chat-msg">{{item.message}}</text>
-        <text class="chat-time">{{item.timeFormatted}}</text>
+        <!-- 以下假设你的消息格式中没有拆分 name/message/time，请按实际调整 -->
+        <text class="chat-msg">{{item.content}}</text>
       </view>
     </block>
   </scroll-view>
 
   <view class="chat-input">
-    <input class="input-box" placeholder="请输入您的问题…" bindinput="onInput" value="{{inputValue}}" />
+    <input 
+      class="input-box" 
+      placeholder="请输入您的问题…" 
+      bindinput="onInput" 
+      value="{{inputMessage}}" />
     <button class="send-btn" bindtap="sendMessage">发送</button>
   </view>
 </view>

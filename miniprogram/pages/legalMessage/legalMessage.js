@@ -1,9 +1,8 @@
-// legalMessage.js
 Page({
   data: {
     openid: '',
     messages: [],  // 聊天记录数组
-    inputMessage: ''
+    inputMessage: ''  // 输入框内容
   },
 
   onLoad() {
@@ -41,7 +40,7 @@ Page({
   },
 
   // 输入框绑定的事件，实时更新输入内容
-  onInputChange(e) {
+  onInput(e) {
     this.setData({ inputMessage: e.detail.value });
   },
 
@@ -62,10 +61,9 @@ Page({
       // 组合消息格式
       const fullMessage = `${userName}：${inputMessage.trim()}`;
 
-      // 保存到legalMessages集合
+      // 保存到legalMessages集合（注意：不写入 _openid，由系统自动维护）
       await db.collection('legalMessages').add({
         data: {
-          _openid: openid,
           content: fullMessage,
           createdAt: new Date()
         }
@@ -74,7 +72,6 @@ Page({
       // 更新本地显示
       this.setData(prev => ({
         messages: [...prev.messages, {
-          _openid: openid,
           content: fullMessage,
           createdAt: new Date()
         }],
