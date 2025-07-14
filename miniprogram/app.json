@@ -33,7 +33,8 @@
     "pages/videoPlayer/videoPlayer",
     "pages/articleViewer/articleViewer",
     "pages/consult/consult",
-    "pages/legalConsult/legalConsult"
+    "pages/legalConsult/legalConsult",
+    "pages/legalMessages/legalMessages"
   ],
   "window": {
     "navigationBarTitleText": "帮教系统",

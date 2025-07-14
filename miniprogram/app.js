@@ -26,7 +26,6 @@ App({
       }
     });
   },
-
   globalData: {
     isNavigating: false
   }

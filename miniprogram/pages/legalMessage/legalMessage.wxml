@@ -1,0 +1,16 @@
+<view class="chat-container">
+  <scroll-view class="chat-history" scroll-y="true">
+    <block wx:for="{{messages}}" wx:key="index">
+      <view class="chat-bubble">
+        <text class="chat-name">{{item.name}}：</text>
+        <text class="chat-msg">{{item.message}}</text>
+        <text class="chat-time">{{item.timeFormatted}}</text>
+      </view>
+    </block>
+  </scroll-view>
+
+  <view class="chat-input">
+    <input class="input-box" placeholder="请输入您的问题…" bindinput="onInput" value="{{inputValue}}" />
+    <button class="send-btn" bindtap="sendMessage">发送</button>
+  </view>
+</view>

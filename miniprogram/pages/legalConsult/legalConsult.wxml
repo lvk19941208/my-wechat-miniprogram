@@ -1,4 +1,29 @@
-<view wx:if="{{authorized}}" class="entry-container">
-  <view class="entry-button" bindtap="toConsultPage">法律咨询留言</view>
-  <view class="entry-button" bindtap="toCluePage">线索上传</view>
+<view class="legal-consult-page">
+  <!-- 顶部插图 -->
+  <image class="header-image" src="{{ headerImg }}" mode="aspectFit" />
+
+  <!-- 描述文字 -->
+  <view class="intro-text">
+    <text class="title">法律咨询服务</text>
+    <text class="desc">您的困惑与线索，我们将严格保密，由专业团队协助处理。</text>
+  </view>
+
+  <!-- 功能按钮区 -->
+  <view class="card-grid">
+    <view class="option-card" bindtap="toLegalMessage">
+      <image class="card-img" src="{{ msgIcon }}" mode="aspectFill" />
+      <view class="card-content">
+        <text class="card-title">我要留言</text>
+        <text class="card-desc">提交您的法律问题，等候专业回复</text>
+      </view>
+    </view>
+
+    <view class="option-card" bindtap="toClueUpload">
+      <image class="card-img" src="{{ clueIcon }}" mode="aspectFill" />
+      <view class="card-content">
+        <text class="card-title">上传线索</text>
+        <text class="card-desc">提供您掌握的线索或证据材料</text>
+      </view>
+    </view>
+  </view>
 </view>
