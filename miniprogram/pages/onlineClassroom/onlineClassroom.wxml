@@ -1,0 +1,41 @@
+<view class="container">
+  <!-- 背景装饰 -->
+  <view class="bg-circle circle-1"></view>
+  <view class="bg-circle circle-2"></view>
+
+  <!-- 标题 -->
+  <view class="header">
+    <text class="title">线上小课堂</text>
+    <text class="subtitle">学习家庭教育知识</text>
+  </view>
+
+  <!-- 分类选择 -->
+  <view class="category-section">
+    <view class="category-item {{selectedCategory === '' ? 'active' : ''}}" bind:tap="onCategoryTap" data-id="">全部</view>
+    <view class="category-item {{selectedCategory === item.id ? 'active' : ''}}" wx:for="{{categories}}" wx:key="id" bind:tap="onCategoryTap" data-id="{{item.id}}">
+      <text>{{item.name}}</text>
+    </view>
+  </view>
+
+  <!-- 加载状态 -->
+  <view class="loading" wx:if="{{isLoading}}">
+    <text>加载中...</text>
+  </view>
+
+  <!-- 内容列表 -->
+  <view class="content-list" wx:if="{{!isLoading && errorMessage === ''}}">
+    <block wx:if="{{contents.length > 0}}">
+      <view class="content-item" wx:for="{{contents}}" wx:key="_id" bind:tap="onContentTap" data-type="{{item.type}}" data-id="{{item._id}}" data-title="{{item.title}}">
+        <image src="{{item.thumbnail || placeholderImageUrl}}" class="thumbnail" mode="aspectFill" binderror="onImageError"></image>
+        <view class="content-info">
+          <text class="content-title">{{item.title}}</text>
+          <text class="content-meta">类型: {{item.type === 'video' ? '视频' : '文章'}} | 更新时间: {{item.createdAt}}</text>
+        </view>
+      </view>
+    </block>
+    <text wx:else class="empty-text">暂无内容</text>
+  </view>
+
+  <!-- 错误提示 -->
+  <text class="empty-text" wx:if="{{errorMessage}}">{{errorMessage}}</text>
+</view>

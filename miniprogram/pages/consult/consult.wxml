@@ -1,0 +1,31 @@
+<view class="consult-container">
+  <!-- 顶部横幅 -->
+  <view class="consult-banner">
+    <text class="banner-title">在这里，放心表达自己</text>
+    <text class="banner-subtitle">我们愿意倾听，也懂得帮助</text>
+  </view>
+
+  <!-- 咨询服务入口 -->
+  <view class="consult-grid">
+    <view class="consult-card" bindtap="onLegalConsult">
+      <image src="cloud://cloud1-0gl2fjfc4ecb00c7.636c-cloud1-0gl2fjfc4ecb00c7-1350622662/images/legal_consult.png" class="card-icon" />
+      <view class="card-text">
+        <text class="card-title">法律咨询</text>
+        <text class="card-desc">专业律师团队，答疑解惑</text>
+      </view>
+    </view>
+
+    <view class="consult-card" bindtap="onPsychConsult">
+      <image src="cloud://cloud1-0gl2fjfc4ecb00c7.636c-cloud1-0gl2fjfc4ecb00c7-1350622662/images/psych_consult.png" class="card-icon" />
+      <view class="card-text">
+        <text class="card-title">心理咨询</text>
+        <text class="card-desc">倾听心声，呵护成长</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部提示 -->
+  <view class="consult-footer">
+    <text class="footer-text">我们承诺：信息保密，仅用于帮扶服务</text>
+  </view>
+</view>

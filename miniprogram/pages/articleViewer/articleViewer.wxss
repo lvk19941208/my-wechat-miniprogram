@@ -1,0 +1,24 @@
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20rpx;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.centered-image {
+  max-width: 100%;
+  border-radius: 12rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 32rpx;
+  color: #666;
+}

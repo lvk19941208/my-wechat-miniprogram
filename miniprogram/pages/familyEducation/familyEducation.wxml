@@ -1,0 +1,33 @@
+<view class="container">
+  <!-- 背景装饰 -->
+  <view class="bg-decoration top-left"></view>
+  <view class="bg-decoration bottom-right"></view>
+
+  <!-- 标题 -->
+  <view class="header">
+    <text class="title">家庭教育指导</text>
+    <text class="subtitle">助力家庭，陪伴成长</text>
+  </view>
+
+  <!-- 加载状态 -->
+  <view class="loading" wx:if="{{isLoading}}">
+    <text>加载中...</text>
+  </view>
+
+  <!-- 功能模块 -->
+  <view class="feature-grid" wx:if="{{!isLoading}}">
+    <view class="feature-card" bind:tap="onOnlineGuardian">
+      <image src="{{guardianImageUrl || 'cloud://cloud1-0gl2fjfc4ecb00c7.636c-cloud1-0gl2fjfc4ecb00c7-1350622662/images/placeholder.png'}}" class="feature-icon" binderror="onImageError"></image>
+      <text class="feature-text">线上家庭监护</text>
+    </view>
+    <view class="feature-card" bind:tap="onOnlineClassroom">
+      <image src="{{classroomImageUrl || 'cloud://cloud1-0gl2fjfc4ecb00c7.636c-cloud1-0gl2fjfc4ecb00c7-1350622662/images/online_guardian.png'}}" class="feature-icon" binderror="onImageError"></image>
+      <text class="feature-text">线上小课堂</text>
+    </view>
+  </view>
+
+  <!-- 底部提示 -->
+  <view class="footer">
+    <text class="footer-text">让我们携手，助力孩子健康成长</text>
+  </view>
+</view>

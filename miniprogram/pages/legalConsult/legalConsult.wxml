@@ -1,0 +1,4 @@
+<view wx:if="{{authorized}}" class="entry-container">
+  <view class="entry-button" bindtap="toConsultPage">法律咨询留言</view>
+  <view class="entry-button" bindtap="toCluePage">线索上传</view>
+</view>

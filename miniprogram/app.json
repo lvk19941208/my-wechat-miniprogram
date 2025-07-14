@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/login0/login0",
     "pages/login/login",
     "pages/checkin/checkin",
     "pages/daily/daily",
@@ -19,14 +20,20 @@
     "pages/endedUsers/endedUsers",
     "pages/checkinRecords/checkinRecords",
     "pages/activities/activities",
-    "pages/notifyUsers/notifyUsers",      
-    "pages/notifyPublish/notifyPublish",  
+    "pages/notifyUsers/notifyUsers",
+    "pages/notifyPublish/notifyPublish",
     "pages/notifyDetail/notifyDetail",
     "pages/riskAlerts/riskAlerts",
     "pages/resolvedAlerts/resolvedAlerts",
-    "pages/lawClassroom/lawClassroom"  ,
+    "pages/lawClassroom/lawClassroom",
     "pages/lawVideos/lawVideos",
-    "pages/lawQuiz/lawQuiz"
+    "pages/lawQuiz/lawQuiz",
+    "pages/familyEducation/familyEducation",
+    "pages/onlineClassroom/onlineClassroom",
+    "pages/videoPlayer/videoPlayer",
+    "pages/articleViewer/articleViewer",
+    "pages/consult/consult",
+    "pages/legalConsult/legalConsult"
   ],
   "window": {
     "navigationBarTitleText": "帮教系统",

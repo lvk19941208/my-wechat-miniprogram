@@ -1,0 +1,6 @@
+{
+  "name": "login",
+  "dependencies": {
+    "wx-server-sdk": "latest"
+  }
+}

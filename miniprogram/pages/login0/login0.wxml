@@ -1,0 +1,49 @@
+<view class="container">
+  <!-- 背景装饰 -->
+  <view class="bg-decoration top-left"></view>
+  <view class="bg-decoration bottom-right"></view>
+
+  <!-- 标题 -->
+  <view class="header">
+    <text class="title">欢迎体验成长帮教</text>
+    <text class="subtitle">从现在开始，一起改变</text>
+  </view>
+
+  <!-- 功能模块 -->
+  <view class="feature-grid">
+    <view class="feature-card" bind:tap="onHelpService">
+      <image src="cloud://cloud1-0gl2fjfc4ecb00c7.636c-cloud1-0gl2fjfc4ecb00c7-1350622662/images/help_service.png" class="feature-icon"></image>
+      <text class="feature-text">帮教服务</text>
+    </view>
+    <view class="feature-card" bind:tap="onFamilyEducation">
+      <image src="cloud://cloud1-0gl2fjfc4ecb00c7.636c-cloud1-0gl2fjfc4ecb00c7-1350622662/images/family_education.png" class="feature-icon"></image>
+      <text class="feature-text">家庭教育指导</text>
+    </view>
+    <view class="feature-card" bind:tap="onConsult">
+      <image src="cloud://cloud1-0gl2fjfc4ecb00c7.636c-cloud1-0gl2fjfc4ecb00c7-1350622662/images/consult.png" class="feature-icon"></image>
+      <text class="feature-text">咨询求助</text>
+    </view>
+    <view class="feature-card" bind:tap="onPsychTest">
+      <image src="cloud://cloud1-0gl2fjfc4ecb00c7.636c-cloud1-0gl2fjfc4ecb00c7-1350622662/images/psych_test.png" class="feature-icon"></image>
+      <text class="feature-text">心理测评</text>
+    </view>
+  </view>
+
+  <!-- 底部信息板块 -->
+  <view class="info-section">
+    <view class="info-item" bind:tap="onLegalNews">
+      <text class="info-text">普法动态</text>
+    </view>
+    <view class="info-item" bind:tap="onCaseStudies">
+      <text class="info-text">典型案例</text>
+    </view>
+    <view class="info-item" bind:tap="onLaws">
+      <text class="info-text">法律法规</text>
+    </view>
+  </view>
+
+  <!-- 底部提示 -->
+  <view class="footer">
+    <text class="footer-text">让我们携手，走向更好的明天</text>
+  </view>
+</view>

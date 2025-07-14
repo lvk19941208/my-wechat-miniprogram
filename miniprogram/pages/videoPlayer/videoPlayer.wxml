@@ -1,0 +1,30 @@
+<view class="container">
+  <!-- 标题 -->
+  <view class="header">
+    <view class="back-button" bind:tap="onBack">
+      <image src="cloud://cloud1-0gl2fjfc4ecb00c7.636c-cloud1-0gl2fjfc4ecb00c7-1350622662/images/back.png" class="back-icon" binderror="onImageError" />
+    </view>
+    <text class="title">{{title}}</text>
+  </view>
+
+  <!-- 加载状态 -->
+  <view class="loading" wx:if="{{isLoading}}">
+    <text>加载中...</text>
+  </view>
+
+  <!-- 视频播放器 -->
+  <view class="video-container" wx:if="{{videoUrl && !errorMessage}}">
+    <video
+      src="{{videoUrl}}"
+      controls
+      binderror="onVideoError"
+      class="video-player"
+      enable-auto-rotation
+      object-fit="contain"
+      bind:ended="onVideoEnded"
+    ></video>
+  </view>
+
+  <!-- 错误提示 -->
+  <text class="error-text" wx:if="{{errorMessage}}">{{errorMessage}}</text>
+</view>

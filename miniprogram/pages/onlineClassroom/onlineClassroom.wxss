@@ -1,13 +1,12 @@
 .container {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   background: linear-gradient(135deg, #87CEEB 0%, #ADD8E6 100%);
   position: relative;
   overflow: hidden;
-  padding: 40rpx;
+  padding: 20rpx;
 }
 
 .bg-circle {
@@ -33,13 +32,13 @@
   animation: float 7s infinite ease-in-out reverse;
 }
 
-.title-container {
+.header {
   text-align: center;
-  margin-bottom: 60rpx;
+  margin: 40rpx 0;
 }
 
 .title {
-  font-size: 50rpx;
+  font-size: 48rpx;
   font-weight: 600;
   color: #fff;
   text-shadow: 0 2rpx 6rpx rgba(0, 0, 0, 0.15);
@@ -49,55 +48,80 @@
 .subtitle {
   font-size: 32rpx;
   color: rgba(255, 255, 255, 0.9);
-  margin-top: 16rpx;
-  animation: fadeIn 1.2s ease-in;
+  margin-top: 10rpx;
 }
 
-.button-container {
-  width: 100%;
+.category-section {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 24rpx;
-  padding: 0 20rpx;
+  gap: 20rpx;
+  width: 90%;
+  margin-bottom: 30rpx;
 }
 
-.btn {
-  flex-basis: calc(50% - 24rpx);
-  padding: 24rpx;
-  border-radius: 60rpx;
-  font-size: 32rpx;
+.category-item {
+  padding: 15rpx 30rpx;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 15rpx;
   color: #fff;
+  font-size: 28rpx;
+  transition: background 0.3s;
+}
+
+.category-item.active {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.content-list {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.content-item {
   display: flex;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  margin-bottom: 24rpx;
-  box-shadow: 0 6rpx 12rpx rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s, opacity 0.3s;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15rpx;
+  padding: 20rpx;
+  box-shadow: 0 6rpx 12rpx rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
 }
 
-.btn:hover {
-  transform: scale(1.03);
+.content-item:active {
+  transform: scale(0.98);
 }
 
-.primary-btn {
-  background: linear-gradient(90deg, #32CD32 0%, #66CDAA 100%);
+.thumbnail {
+  width: 120rpx;
+  height: 80rpx;
+  margin-right: 20rpx;
+  border-radius: 10rpx;
 }
 
-.secondary-btn {
-  background: linear-gradient(90deg, #1E90FF 0%, #87CEFA 100%);
+.content-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
-.notice-btn {
-  background: linear-gradient(90deg, #FFA500 0%, #FFD700 100%);
-}
-
-.footer-text {
+.content-title {
   font-size: 30rpx;
-  color: rgba(255, 255, 255, 0.85);
-  margin-top: 40rpx;
-  animation: fadeIn 1.8s ease-in;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.content-meta {
+  font-size: 24rpx;
+  color: #666;
+}
+
+.empty-text {
+  font-size: 32rpx;
+  color: #555;
+  margin: 20rpx 0;
+  text-align: center;
 }
 
 @keyframes float {

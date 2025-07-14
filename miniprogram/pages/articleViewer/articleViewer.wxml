@@ -1,0 +1,12 @@
+<view class="image-container" wx:if="{{imageUrl}}">
+  <image
+    src="{{imageUrl}}"
+    mode="widthFix"
+    show-menu-by-longpress="true"
+    class="centered-image"
+  />
+</view>
+
+<view wx:else class="loading-container">
+  <text>加载中...</text>
+</view>
